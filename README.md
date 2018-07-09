@@ -59,6 +59,7 @@ Example to call:
 
 This playbook will deploy RefStack and create a shell script which can be used to
 execute the RefStack tests. This script is located at ``{{ refstack_install_dir }}/run_refstack.sh``.
+Change directory to ``{{ refstack_install_dir }}`` and execute the script from that location.
 
 The shell script can be run manually or as a step in a CI pipeline.
 
