@@ -55,7 +55,7 @@ Example to call:
         - refstack_openstack_public_net_name: MY_PUBLIC_NETWORK
         - refstack_openstack_admin_password: "{{ lookup('pipe', 'vault read -field value secret/passwords/openstack_admin') }}"
       roles:
-         - rd-ansible-refstack
+        - rd-ansible-refstack
 
 This playbook will deploy RefStack and create a shell script which can be used to
 execute the RefStack tests. This script is located at ``{{ refstack_install_dir }}/run_refstack.sh``.
