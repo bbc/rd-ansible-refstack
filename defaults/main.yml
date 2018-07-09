@@ -1,0 +1,80 @@
+---
+# name: refstack_install/defaults
+
+#------------------------------------------------------------------------------
+# Packages - All our required packages we need installing
+#------------------------------------------------------------------------------
+
+packages:
+  - aptitude
+  - git
+  - ntp
+  - ntpdate
+  - openssh-server
+  - python-dev
+  - sudo
+  - python-pip
+
+pip_packages:
+  - shade
+
+#------------------------------------------------------------------------------
+# Paths and defaults
+#------------------------------------------------------------------------------
+
+refstack_repo_url: "https://git.openstack.org/openstack/refstack-client"
+refstack_version: HEAD
+
+refstack_install_dir: /opt/refstack
+refstack_install_command: "./setup_env"
+
+refstack_command: refstack-client
+
+# refstack-client command line switches:
+#   test   execute tests
+#   -c <tempest_config_file>
+#   -v     verbose output
+#   -p     run multiple tests in parallel (remove if this causes contention issues)
+#
+# Either
+#   --test-list <path_or_url_to_list_of_tests>
+# Or
+#   --regex <test_name_regex>     (for example "tempest.api.identity.*")
+#
+# refstack-client --help  for more info
+#
+
+## Try removing -p (run tests in parallel) to see if that makes it more reliable
+
+refstack_command_args: "test -c {{ refstack_install_dir }}/etc/tempest.conf -v"
+
+refstack_test_spec: "--test-list 'https://refstack.openstack.org/api/v1/guidelines/2017.09/tests?target=platform&type=required&alias=true&flag=false'"
+
+
+#------------------------------------------------------------------------------
+# Endpoints and authentication
+#------------------------------------------------------------------------------
+
+refstack_openstack_admin_password: ""    # This value MUST be set externally before calling this role!
+refstack_openstack_keystone_public_url: "https://openstack.example.com:5000/v3"
+
+#------------------------------------------------------------------------------
+# The following resources must already exist in the openstack deployment
+#------------------------------------------------------------------------------
+
+#external provider network name
+refstack_openstack_public_net_name: EXAMPLE_EXTERNAL_NET
+
+#private network for tempest
+refstack_fixed_network_name: "private"
+
+#private subnet for tempest
+refstack_project_network_cidr: 192.168.74.0/24
+refstack_network_mask_bits: 28
+
+#flavor id
+refstack_flavor_ref: 201
+refstack_flavor_ref_alt: 202
+
+#alternate image name in addition to "cirros"
+refstack_openstack_alternate_image_name: "cirros-0.3.4-x86_64"

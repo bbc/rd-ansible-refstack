@@ -1,0 +1,6 @@
+---
+# module: refstack_install/tasks/configure
+# description: Run RefStack
+
+- name: Run the refstack script
+  shell: "{{ refstack_install_dir }}/run_refstack.sh"

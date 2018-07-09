@@ -1,0 +1,31 @@
+---
+# module: refstack_install/tasks/configure
+# description: Configure RefStack
+
+- name: Run the refstack setup script
+  shell: "{{ refstack_install_command }}"
+  args:
+    chdir: "{{ refstack_install_dir }}"
+    creates: "{{ refstack_install_dir }}/.venv"
+
+- name: Ensure results dir is writable by all users
+  file:
+    path: "{{ refstack_install_dir }}/.tempest"
+    mode: 0777
+    recurse: yes
+
+- name: Create tempest.conf file
+  template:
+    src: tempest.conf.j2
+    dest: "{{ refstack_install_dir }}/etc/tempest.conf"
+
+- name: Create accounts.yaml file
+  template:
+    src: accounts.yaml.j2
+    dest: "{{ refstack_install_dir }}/etc/accounts.yaml"
+
+- name: Create simple script to run refstack-client
+  template:
+    src: run_refstack.sh.j2
+    dest: "{{ refstack_install_dir }}/run_refstack.sh"
+    mode: 0777

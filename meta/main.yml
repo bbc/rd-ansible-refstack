@@ -1,0 +1,10 @@
+---
+galaxy_info:
+  author: "Stuart Grace"
+  license: Apache2
+  min_ansible_version: 2.4
+  platforms:
+   - name: Ubuntu
+     versions:
+      - xenial
+dependencies: []

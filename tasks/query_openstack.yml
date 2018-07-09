@@ -1,0 +1,54 @@
+---
+# module: refstack_install/tasks/query_openstack
+# description: Read some required ID values from the running OpenStack instance
+
+- name: Gather facts about the previously created external network
+  os_networks_facts:
+    auth:
+      auth_url: "{{ refstack_openstack_keystone_public_url }}"
+      username: admin
+      password: "{{ refstack_openstack_admin_password }}"
+      project_name: admin
+      domain_id: default
+    validate_certs: no
+    name: "{{ refstack_openstack_public_net_name }}"
+
+## - debug: var=openstack_networks
+
+- name: Save external network ID
+  set_fact:
+    refstack_openstack_public_net_id: "{{ openstack_networks[0].id | default(0) }}"
+
+- name: Gather facts about the previously created Cirros image
+  os_image_facts:
+    auth:
+      auth_url: "{{ refstack_openstack_keystone_public_url }}"
+      username: admin
+      password: "{{ refstack_openstack_admin_password }}"
+      project_name: admin
+      domain_id: default
+    validate_certs: no
+    image: cirros
+
+## - debug: var=openstack_image
+
+- name: Save cirros image ID
+  set_fact:
+    refstack_openstack_cirros_image_id: "{{ openstack_image.id | default(0) }}"
+
+- name: Look for an alternate Cirros (or other) image
+  os_image_facts:
+    auth:
+      auth_url: "{{ refstack_openstack_keystone_public_url }}"
+      username: admin
+      password: "{{ refstack_openstack_admin_password }}"
+      project_name: admin
+      domain_id: default
+    validate_certs: no
+    image: "{{ refstack_openstack_alternate_image_name }}"
+
+## - debug: var=openstack_image
+
+- name: Save alternate image ID
+  set_fact:
+    refstack_openstack_cirros_alt_image_id: "{{ openstack_image.id | default(0) }}"

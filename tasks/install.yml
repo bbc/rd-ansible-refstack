@@ -1,0 +1,25 @@
+---
+# module: refstack_install/tasks/install
+# description: Install our required packages for RefStack
+
+- name: Install all required packages for RefStack
+  apt:
+    pkg: "{{ packages }}"
+    state: latest
+
+- name: Install required pip packages
+  pip:
+   name: "{{ item }}"
+  with_items: "{{ pip_packages }}"
+
+- name: Create refstack directory
+  file:
+    path: "{{ refstack_install_dir }}"
+    state: directory
+    mode: 0755
+
+- name: Clone the RefStack project repo
+  git:
+    repo: "{{ refstack_repo_url }}"
+    dest: "{{ refstack_install_dir }}"
+    version: "{{ refstack_version }}"

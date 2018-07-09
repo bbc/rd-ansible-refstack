@@ -1,0 +1,7 @@
+#!/bin/bash
+# Small wrapper to run refstack-client with a full set of command-line args
+
+source .venv/bin/activate
+
+{{ refstack_install_dir }}/{{ refstack_command }} {{ refstack_command_args }} {{ refstack_test_spec }}
+

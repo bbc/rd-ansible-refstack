@@ -1,0 +1,9 @@
+# A minimal accounts.yaml file
+# Will likely not work with swift, since additional
+# roles are required. For more documentation see:
+# https://git.openstack.org/cgit/openstack/tempest/tree/etc/accounts.yaml.sample
+
+- username: 'admin'
+  project_name: 'admin'
+  password: '{{ refstack_openstack_admin_password }}'
+  domain_name: 'default'

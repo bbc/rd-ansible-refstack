@@ -1,0 +1,71 @@
+## This file was created by ansible refstack_install role.    ##
+## Any changes will be overwritten when the role is run again ##
+
+# For details see:
+#
+#   https://docs.openstack.org/tempest/latest/sampleconf.html
+
+
+[auth]
+test_accounts_file = {{ refstack_install_dir }}/etc/accounts.yaml
+use_dynamic_credentials = true
+default_credentials_domain_name = Default
+admin_domain_name = Default
+admin_username = admin
+admin_project_name = admin
+admin_password = {{ refstack_openstack_admin_password }}
+
+[compute]
+
+# These should refer to two distinct images (different names and IDs) but both can be copies of Cirros
+# which is very small and fast:
+image_ref = {{ refstack_openstack_cirros_image_id }}
+image_ref_alt = {{ refstack_openstack_cirros_alt_image_id }}
+
+# These two small flavors are created by openstack-ansible tempest role:
+flavor_ref = {{ refstack_flavor_ref }}
+flavor_ref_alt = {{ refstack_flavor_ref_alt }}
+
+fixed_network_name = {{ refstack_fixed_network_name }}
+
+[compute-feature-enabled]
+resize = true
+
+[identity]
+uri_v3 = {{ refstack_openstack_keystone_public_url }}
+auth_version = v3
+v3_endpoint_type = publicURL
+disable_ssl_certificate_validation = True
+
+[identity-feature-enabled]
+api_v2 = false
+api_v3 = true
+
+[network]
+project_network_cidr = {{ refstack_project_network_cidr }} 192.168.74.0/24
+project_network_mask_bits = {{ refstack_network_mask_bits }} 28
+
+# This public external network is created by openstack-ansible tempest role:
+floating_network_name = {{ refstack_openstack_public_net_name }}
+public_network_id = {{ refstack_openstack_public_net_id }}
+
+[object-storage]
+operator_role = SwiftOperator
+reseller_admin_role = ResellerAdmin
+
+[oslo_concurrency]
+lock_path = /tmp/tempest
+
+[service_available]
+cinder = true
+neutron = true
+glance = true
+swift = true
+nova = true
+heat = false
+
+[validation]
+run_validation = true
+connect_method = floating
+auth_method = keypair
+image_ssh_user = cirros

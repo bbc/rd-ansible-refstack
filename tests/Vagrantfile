@@ -1,0 +1,14 @@
+# Test our Ansible role
+
+Vagrant.configure("2") do |config|
+  # Ubuntu Xenial 16.04
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.define "refstack_install-test-#{ENV['BRANCH_NAME']}-#{ENV['BUILD_NUMBER']}"
+  # CentOS 7
+  #config.vm.box = "centos/7"
+  # Trigger ansible playbook build
+  config.vm.provision "ansible" do |ansible|
+    # Run playbook
+    ansible.playbook = "test.yml"
+  end
+end
