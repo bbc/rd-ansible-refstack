@@ -30,6 +30,9 @@ refstack_install_command: "./setup_env"
 
 refstack_command: refstack-client
 
+# Do we wish to run a refstack deployment
+refstack_run: False
+
 # refstack-client command line switches:
 #   test   execute tests
 #   -c <tempest_config_file>
@@ -56,7 +59,8 @@ refstack_test_spec: "--test-list 'https://refstack.openstack.org/api/v1/guidelin
 #------------------------------------------------------------------------------
 
 refstack_openstack_admin_password: ""    # This value MUST be set externally before calling this role!
-refstack_openstack_keystone_public_url: "https://openstack.example.com:5000/v3"
+refstack_openstack_keystone_public_url: ""
+#refstack_openstack_keystone_public_url: "https://openstack.example.com:5000/v3"
 
 #------------------------------------------------------------------------------
 # The following resources must already exist in the openstack deployment
@@ -78,3 +82,10 @@ refstack_flavor_ref_alt: 202
 
 #alternate image name in addition to "cirros"
 refstack_openstack_alternate_image_name: "cirros-0.3.4-x86_64"
+
+
+##### WORKING VARIABLES - do not change #####
+
+refstack_openstack_cirros_alt_image_id: ""
+refstack_openstack_cirros_image_id: ""
+refstack_openstack_public_net_id: ""

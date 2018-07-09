@@ -5,7 +5,7 @@
 - name: Install all required packages for RefStack
   apt:
     pkg: "{{ packages }}"
-    state: latest
+    state: present
 
 - name: Install required pip packages
   pip:

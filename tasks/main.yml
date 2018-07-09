@@ -3,7 +3,10 @@
 # description: Install RefStack onto an Ubuntu 16.xx server
 
 - include_tasks: install.yml
+
 - include_tasks: query_openstack.yml
+  when: refstack_openstack_keystone_public_url | length > 0
+
 - include_tasks: configure.yml
 
 - include_tasks: run.yml

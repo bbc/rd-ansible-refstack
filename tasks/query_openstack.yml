@@ -12,8 +12,7 @@
       domain_id: default
     validate_certs: no
     name: "{{ refstack_openstack_public_net_name }}"
-
-## - debug: var=openstack_networks
+  no_log: True
 
 - name: Save external network ID
   set_fact:
@@ -29,8 +28,7 @@
       domain_id: default
     validate_certs: no
     image: cirros
-
-## - debug: var=openstack_image
+  no_log: True
 
 - name: Save cirros image ID
   set_fact:
@@ -46,8 +44,7 @@
       domain_id: default
     validate_certs: no
     image: "{{ refstack_openstack_alternate_image_name }}"
-
-## - debug: var=openstack_image
+  no_log: True    
 
 - name: Save alternate image ID
   set_fact:
