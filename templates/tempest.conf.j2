@@ -42,8 +42,8 @@ api_v2 = false
 api_v3 = true
 
 [network]
-project_network_cidr = {{ refstack_project_network_cidr }} 192.168.74.0/24
-project_network_mask_bits = {{ refstack_network_mask_bits }} 28
+project_network_cidr = {{ refstack_project_network_cidr }}
+project_network_mask_bits = {{ refstack_network_mask_bits }}
 
 # This public external network is created by openstack-ansible tempest role:
 floating_network_name = {{ refstack_openstack_public_net_name }}
