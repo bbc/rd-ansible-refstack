@@ -51,7 +51,7 @@ refstack_run: False
 
 refstack_command_args: "test -c {{ refstack_install_dir }}/etc/tempest.conf -v"
 
-refstack_test_spec: "--test-list 'https://refstack.openstack.org/api/v1/guidelines/next/tests?target=platform&type=required&alias=true&flag=false'"
+refstack_test_spec: "--test-list 'https://refstack.openstack.org/api/v1/guidelines/2019.06/tests?target=platform&type=required&alias=true&flag=false'"
 
 
 #------------------------------------------------------------------------------
