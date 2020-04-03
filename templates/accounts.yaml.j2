@@ -3,7 +3,7 @@
 # roles are required. For more documentation see:
 # https://git.openstack.org/cgit/openstack/tempest/tree/etc/accounts.yaml.sample
 
-- username: 'admin'
-  project_name: 'admin'
+- username: '{{ refstack_openstack_admin_username }}'
+  project_name: '{{ refstack_openstack_project_name }}'
   password: '{{ refstack_openstack_admin_password }}'
   domain_name: 'default'

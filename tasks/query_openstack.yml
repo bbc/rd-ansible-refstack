@@ -6,9 +6,9 @@
   os_networks_facts:
     auth:
       auth_url: "{{ refstack_openstack_keystone_public_url }}"
-      username: admin
+      username: "{{ refstack_openstack_admin_username }}"
       password: "{{ refstack_openstack_admin_password }}"
-      project_name: admin
+      project_name: "{{ refstack_openstack_project_name }}"
       domain_id: default
     validate_certs: no
     name: "{{ refstack_openstack_public_net_name }}"
@@ -22,12 +22,12 @@
   os_image_facts:
     auth:
       auth_url: "{{ refstack_openstack_keystone_public_url }}"
-      username: admin
+      username: "{{ refstack_openstack_admin_username }}"
       password: "{{ refstack_openstack_admin_password }}"
-      project_name: admin
+      project_name: "{{ refstack_openstack_project_name }}"
       domain_id: default
     validate_certs: no
-    image: cirros
+    image: "{{ refstack_openstack_image_name }}"
   no_log: True
 
 - name: Save cirros image ID
@@ -38,9 +38,9 @@
   os_image_facts:
     auth:
       auth_url: "{{ refstack_openstack_keystone_public_url }}"
-      username: admin
+      username: "{{ refstack_openstack_admin_username }}"
       password: "{{ refstack_openstack_admin_password }}"
-      project_name: admin
+      project_name: "{{ refstack_openstack_project_name }}"
       domain_id: default
     validate_certs: no
     image: "{{ refstack_openstack_alternate_image_name }}"

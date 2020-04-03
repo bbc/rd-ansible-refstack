@@ -24,6 +24,12 @@
     src: accounts.yaml.j2
     dest: "{{ refstack_install_dir }}/etc/accounts.yaml"
 
+- name: Configure socks proxy if needed
+  template:
+    src: dante.conf.j2
+    dest: /etc/dante.conf
+  when: refstack_socks_gateway is defined and refstack_socks_port is defined
+
 - name: Create simple script to run refstack-client
   template:
     src: run_refstack.sh.j2

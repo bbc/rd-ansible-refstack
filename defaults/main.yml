@@ -15,6 +15,9 @@ packages:
   - sudo
   - python-pip
 
+packages_for_socks_proxy:
+  - dante-client
+
 pip_packages:
   - shade
 
@@ -51,16 +54,27 @@ refstack_run: False
 
 refstack_command_args: "test -c {{ refstack_install_dir }}/etc/tempest.conf -v"
 
-refstack_test_spec: "--test-list 'https://refstack.openstack.org/api/v1/guidelines/2019.06/tests?target=platform&type=required&alias=true&flag=false'"
+refstack_test_spec: "--test-list 'https://refstack.openstack.org/api/v1/guidelines/2019.11/tests?target=platform&type=required&alias=true&flag=false'"
 
 
 #------------------------------------------------------------------------------
 # Endpoints and authentication
 #------------------------------------------------------------------------------
 
-refstack_openstack_admin_password: ""    # This value MUST be set externally before calling this role!
-refstack_openstack_keystone_public_url: ""
-#refstack_openstack_keystone_public_url: "https://openstack.example.com:5000/v3"
+refstack_openstack_keystone_public_url: ""  # This value MUST be set externally before calling this role! Example:
+                                            # refstack_openstack_keystone_public_url: "https://openstack.example.com:5000/v3"
+refstack_openstack_admin_username: admin
+refstack_openstack_admin_password: ""       # This value MUST be set externally before calling this role!
+refstack_openstack_project_name: admin
+
+# If http proxy required to reach Openstack URL from refstack machine:
+#
+# refstack_http_proxy: http://www-cache.rd.bbc.co.uk:8080/
+
+# If using socksify to route all HTTPS traffic through socks gateway:
+#
+# refstack_socks_gateway: socks-gw.rd.bbc.co.uk
+# refstack_socks_port: 1080
 
 #------------------------------------------------------------------------------
 # The following resources must already exist in the openstack deployment
@@ -73,7 +87,7 @@ refstack_openstack_public_net_name: EXAMPLE_EXTERNAL_NET
 refstack_fixed_network_name: "private"
 
 #private subnet for tempest
-refstack_project_network_cidr: 192.168.74.0/24
+refstack_project_network_cidr: 192.168.74.0/28
 refstack_network_mask_bits: 28
 
 #flavor id
@@ -83,6 +97,8 @@ refstack_flavor_ref_alt: 202
 #alternate image name in addition to "cirros"
 refstack_openstack_alternate_image_name: "cirros-0.3.4-x86_64"
 
+# optional openstack components to test
+refstack_swift_available: 'true'
 
 ##### WORKING VARIABLES - do not change #####
 

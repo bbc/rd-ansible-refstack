@@ -7,6 +7,12 @@
     pkg: "{{ packages }}"
     state: present
 
+- name: Install socksify if needed
+  apt:
+    pkg: "{{ packages_for_socks_proxy }}"
+    state: present
+  when: refstack_socks_gateway is defined and refstack_socks_port is defined
+
 - name: Install required pip packages
   pip:
    name: "{{ item }}"
