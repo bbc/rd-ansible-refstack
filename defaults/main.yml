@@ -11,9 +11,10 @@ packages:
   - ntp
   - ntpdate
   - openssh-server
-  - python-dev
+  - python3-dev
   - sudo
-  - python-pip
+  - python3-pip
+  - python3-setuptools
 
 packages_for_socks_proxy:
   - dante-client
