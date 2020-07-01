@@ -37,6 +37,9 @@ refstack_command: refstack-client
 # Do we wish to run a refstack deployment
 refstack_run: False
 
+# Do we want to SSH into created VMs. Note that this can't currently be done from behind a proxy
+refstack_run_validation: true
+
 # refstack-client command line switches:
 #   test   execute tests
 #   -c <tempest_config_file>
