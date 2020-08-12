@@ -29,8 +29,9 @@ pip_packages:
 refstack_repo_url: "https://git.openstack.org/openstack/refstack-client"
 refstack_version: HEAD
 
+# Specify the tempest tag to use after setup_env as the default is very old
 refstack_install_dir: /opt/refstack
-refstack_install_command: "./setup_env"
+refstack_install_command: "./setup_env -t 24.0.0"
 
 refstack_command: refstack-client
 
