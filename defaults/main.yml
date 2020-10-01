@@ -31,7 +31,7 @@ refstack_version: HEAD
 
 # Specify the tempest tag to use after setup_env as the default is very old
 refstack_install_dir: /opt/refstack
-refstack_install_command: "./setup_env -t 24.0.0"
+refstack_install_command: "./setup_env -t 25.0.0"
 
 refstack_command: refstack-client
 
@@ -59,7 +59,7 @@ refstack_run_validation: true
 
 refstack_command_args: "test -c {{ refstack_install_dir }}/etc/tempest.conf -v"
 
-refstack_test_spec: "--test-list 'https://refstack.openstack.org/api/v1/guidelines/2019.11/tests?target=platform&type=required&alias=true&flag=false'"
+refstack_test_spec: "--test-list 'https://refstack.openstack.org/api/v1/guidelines/2020.06/tests?target=platform&type=required&alias=true&flag=false'"
 
 
 #------------------------------------------------------------------------------
