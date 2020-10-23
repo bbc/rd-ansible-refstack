@@ -66,8 +66,8 @@ floating_network_name = {{ refstack_openstack_public_net_name }}
 public_network_id = {{ refstack_openstack_public_net_id }}
 
 [object-storage]
-operator_role = SwiftOperator
-reseller_admin_role = ResellerAdmin
+operator_role = _member_
+reseller_admin_role = admin
 
 [oslo_concurrency]
 lock_path = /tmp/tempest
