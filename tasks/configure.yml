@@ -19,6 +19,18 @@
     src: tempest.conf.j2
     dest: "{{ refstack_install_dir }}/etc/tempest.conf"
 
+- name: Fetch the authoritative test list
+  get_url:
+    url: "{{ refstack_test_spec }}"
+    dest: "{{ refstack_install_dir }}/etc/tempest_tests.conf"
+
+- name: Remove disabled tests from test list
+  lineinfile:
+    path: "{{ refstack_install_dir }}/etc/tempest_tests.conf"
+    regexp: "{{ item }}"
+    state: absent
+  with_items: "{{ refstack_disabled_tests }}"
+
 - name: Create accounts.yaml file
   template:
     src: accounts.yaml.j2

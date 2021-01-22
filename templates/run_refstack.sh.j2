@@ -3,5 +3,5 @@
 
 source .venv/bin/activate
 
-{% if refstack_socks_gateway is defined %}socksify {% endif %}{{ refstack_install_dir }}/{{ refstack_command }} {{ refstack_command_args }} {{ refstack_test_spec }}
+{% if refstack_socks_gateway is defined %}socksify {% endif %}{{ refstack_install_dir }}/{{ refstack_command }} {{ refstack_command_args }}
 

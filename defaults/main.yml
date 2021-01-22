@@ -57,10 +57,12 @@ refstack_run_validation: true
 
 ## Try removing -p (run tests in parallel) to see if that makes it more reliable
 
-refstack_command_args: "test -c {{ refstack_install_dir }}/etc/tempest.conf -v"
+refstack_command_args: "test -c {{ refstack_install_dir }}/etc/tempest.conf -v --test-list {{ refstack_install_dir }}/etc/tempest_tests.conf"
 
-refstack_test_spec: "--test-list 'https://refstack.openstack.org/api/v1/guidelines/2020.06/tests?target=platform&type=required&alias=true&flag=false'"
+refstack_test_spec: "https://refstack.openstack.org/api/v1/guidelines/2020.06/tests?target=platform&type=required&alias=true&flag=false"
 
+# Example: refstack_disabled_tests: ["tempest.api.compute.servers.test_multiple_create.MultipleCreateTestJSON"]
+refstack_disabled_tests: []
 
 #------------------------------------------------------------------------------
 # Endpoints and authentication
