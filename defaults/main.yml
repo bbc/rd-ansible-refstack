@@ -15,12 +15,14 @@ packages:
   - sudo
   - python3-pip
   - python3-setuptools
+  - rustc
 
 packages_for_socks_proxy:
   - dante-client
 
 pip_packages:
   - shade
+  - setuptools-rust
 
 #------------------------------------------------------------------------------
 # Paths and defaults
