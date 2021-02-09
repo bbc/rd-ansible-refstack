@@ -21,8 +21,8 @@ packages_for_socks_proxy:
   - dante-client
 
 pip_packages:
-  - shade
   - setuptools-rust
+  - shade
 
 #------------------------------------------------------------------------------
 # Paths and defaults
