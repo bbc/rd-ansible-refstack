@@ -12,11 +12,12 @@
       domain_id: default
     validate_certs: no
     name: "{{ refstack_openstack_public_net_name }}"
+  register: result
   no_log: True
 
 - name: Save external network ID
   set_fact:
-    refstack_openstack_public_net_id: "{{ openstack_networks[0].id | default(0) }}"
+    refstack_openstack_public_net_id: "{{ result.openstack_networks[0].id | default(0) }}"
 
 - name: Gather facts about the previously created Cirros image
   os_image_facts:
@@ -28,11 +29,12 @@
       domain_id: default
     validate_certs: no
     image: "{{ refstack_openstack_image_name }}"
+  register: result
   no_log: True
 
 - name: Save cirros image ID
   set_fact:
-    refstack_openstack_cirros_image_id: "{{ openstack_image.id | default(0) }}"
+    refstack_openstack_cirros_image_id: "{{ result.openstack_image.id | default(0) }}"
 
 - name: Look for an alternate Cirros (or other) image
   os_image_facts:
@@ -44,8 +46,9 @@
       domain_id: default
     validate_certs: no
     image: "{{ refstack_openstack_alternate_image_name }}"
-  no_log: True    
+  register: result
+  no_log: True
 
 - name: Save alternate image ID
   set_fact:
-    refstack_openstack_cirros_alt_image_id: "{{ openstack_image.id | default(0) }}"
+    refstack_openstack_cirros_alt_image_id: "{{ result.openstack_image.id | default(0) }}"
