@@ -5,7 +5,7 @@ vagrant_ansible {
     // agent_type = 'baremetal' or 'container'
     agent_type = 'container'
     // provider = 'docker' or 'virtualbox'
-    provider = 'docker'
+    provider = 'virtualbox'
     // distros = [ 'xenial', 'bionic' ]
-    distros = [ 'bionic', 'focal' ]
+    distros = [ 'focal' ]
 }
