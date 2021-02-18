@@ -22,7 +22,7 @@ packages_for_socks_proxy:
 
 pip_packages:
   - setuptools-rust
-  - shade
+  - openstacksdk
 
 #------------------------------------------------------------------------------
 # Paths and defaults

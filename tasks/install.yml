@@ -6,6 +6,7 @@
   apt:
     pkg: "{{ packages }}"
     state: present
+    update_cache: yes
 
 - name: Install socksify if needed
   apt:
@@ -20,8 +21,7 @@
 
 - name: Install required pip packages
   pip:
-    name: "{{ item }}"
-  with_items: "{{ pip_packages }}"
+    name: "{{ pip_packages }}"
 
 - name: Create refstack directory
   file:
