@@ -3,7 +3,7 @@
 # description: Read some required ID values from the running OpenStack instance
 
 - name: Gather facts about the previously created external network
-  os_networks_facts:
+  openstack.cloud.networks_info:
     auth:
       auth_url: "{{ refstack_openstack_keystone_public_url }}"
       username: "{{ refstack_openstack_admin_username }}"
@@ -20,7 +20,7 @@
     refstack_openstack_public_net_id: "{{ result.openstack_networks[0].id | default(0) }}"
 
 - name: Gather facts about the previously created Cirros image
-  os_image_facts:
+  openstack.cloud.image_info:
     auth:
       auth_url: "{{ refstack_openstack_keystone_public_url }}"
       username: "{{ refstack_openstack_admin_username }}"
@@ -37,7 +37,7 @@
     refstack_openstack_cirros_image_id: "{{ result.openstack_image.id | default(0) }}"
 
 - name: Look for an alternate Cirros (or other) image
-  os_image_facts:
+  openstack.cloud.image_info:
     auth:
       auth_url: "{{ refstack_openstack_keystone_public_url }}"
       username: "{{ refstack_openstack_admin_username }}"
