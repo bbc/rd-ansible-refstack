@@ -14,11 +14,6 @@
     state: present
   when: refstack_socks_gateway is defined and refstack_socks_port is defined
 
-- name: Upgrade pip
-  pip:
-    name: pip
-    state: latest
-
 - name: Install required pip packages
   pip:
     name: "{{ pip_packages }}"
