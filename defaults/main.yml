@@ -23,6 +23,7 @@ packages_for_socks_proxy:
 pip_packages:
   - setuptools-rust
   - openstacksdk
+  - python-tempestconf
 
 #------------------------------------------------------------------------------
 # Paths and defaults
